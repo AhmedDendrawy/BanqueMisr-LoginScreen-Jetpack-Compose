@@ -42,7 +42,6 @@ fun UsernameTextField(state: TextFieldState, modifier: Modifier) {
     OutlinedTextField(
         state = state,
         modifier = modifier
-
             .fillMaxWidth(),
         label = { Text(stringResource(R.string.username)) },
         colors = OutlinedTextFieldDefaults.colors(
@@ -94,9 +93,9 @@ fun ForgotPasswordText(modifier: Modifier = Modifier, onMyClick: () -> Unit) {
 }
 
 @Composable
-fun LoginButton(isEnabled: Boolean, modifier: Modifier = Modifier) {
+fun LoginButton(isEnabled: Boolean, modifier: Modifier = Modifier,onClick: () -> Unit) {
     Button(
-        onClick = {},
+        onClick = onClick,
         enabled = isEnabled,
         modifier = Modifier
             .padding(top = 32.dp)
