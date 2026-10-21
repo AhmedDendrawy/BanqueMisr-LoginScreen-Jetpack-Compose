@@ -1,4 +1,4 @@
-package com.ahmed.banquemisrapp
+package com.ahmed.banquemisrapp.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ahmed.banquemisrapp.R
 import com.ahmed.banquemisrapp.ui.theme.BanqueMisrRed
 
 @Composable
