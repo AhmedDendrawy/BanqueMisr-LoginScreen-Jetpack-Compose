@@ -1,4 +1,4 @@
-package com.ahmed.banquemisrapp
+package com.ahmed.banquemisrapp.ui.components
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.Image
@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.os.LocaleListCompat
+import com.ahmed.banquemisrapp.R
 import com.ahmed.banquemisrapp.ui.theme.BanqueMisrRed
 
 @Composable
