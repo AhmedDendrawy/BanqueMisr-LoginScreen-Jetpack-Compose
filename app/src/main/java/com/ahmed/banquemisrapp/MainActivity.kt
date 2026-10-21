@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -25,9 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             BanqueMisrAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    LoginScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -36,11 +35,31 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
+    val usernameField = rememberTextFieldState()
+    val passwordField = rememberTextFieldState()
     val context = LocalContext.current
+    Content(
+        usernameField = usernameField,
+        passwordField = passwordField,
+        onForgotPasswordClick = {
+            Toast.makeText(context, "Go to Forgot Password", Toast.LENGTH_SHORT).show()
+        },
+        onLoginClick = {
+            Toast.makeText(context, "Login Clicked", Toast.LENGTH_SHORT).show()
+        },
+        modifier = modifier
+    )
+}
 
-    var usernameField = rememberTextFieldState()
-    var password = rememberTextFieldState()
-    val isButtonEnabled = usernameField.text.isNotEmpty() && password.text.isNotEmpty()
+@Composable
+fun Content(
+    modifier: Modifier = Modifier,
+    usernameField: TextFieldState,
+    passwordField: TextFieldState,
+    onForgotPasswordClick: () -> Unit,
+    onLoginClick: () -> Unit,
+) {
+    val isButtonEnabled = usernameField.text.isNotEmpty() && passwordField.text.isNotEmpty()
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -63,14 +82,17 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
             )
             PasswordTextField(
-                state = password,
+                state = passwordField,
                 modifier
                     .fillMaxWidth()
             )
             ForgotPasswordText() {
-                Toast.makeText(context, "Go to Forgot Password", Toast.LENGTH_SHORT).show()
+                onForgotPasswordClick()
             }
-            LoginButton(isButtonEnabled)
+            LoginButton(
+                isEnabled = isButtonEnabled,
+                onClick = onLoginClick
+            )
             ContactUSText()
         }
         Footer()
@@ -80,7 +102,12 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun LoginScreenPreview() {
-    LoginScreen()
+private fun ContentPreview() {
+    Content(
+        usernameField = TextFieldState(),
+        passwordField = TextFieldState(),
+        onForgotPasswordClick = {},
+        onLoginClick = {}
+    )
 }
 
